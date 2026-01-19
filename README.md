@@ -44,15 +44,40 @@ This repository contains a C# console application that demonstrates Tesseract OC
    For detailed setup instructions and other languages, see [ConsoleApp1/TESSDATA_SETUP.md](ConsoleApp1/TESSDATA_SETUP.md)
 
 4. **Run the application**
+   
+   **Linux:**
    ```bash
-   dotnet run --project ConsoleApp1 <path-to-image>
+   # Test with the included sample image
+   LD_LIBRARY_PATH=./ConsoleApp1/bin/Debug/net8.0/tesseractLib/linux_x64:$LD_LIBRARY_PATH dotnet run --project ConsoleApp1 ConsoleApp1/sample.png
+   ```
+   
+   **Windows/macOS:**
+   ```bash
+   # Test with the included sample image
+   dotnet run --project ConsoleApp1 ConsoleApp1/sample.png
    ```
 
 ## Usage
 
+### Linux Note
+On Linux, you may need to set the LD_LIBRARY_PATH to include the native libraries:
+
 ```bash
+# Set LD_LIBRARY_PATH (required on Linux)
+export LD_LIBRARY_PATH=/path/to/ConsoleApp1/bin/Debug/net8.0/tesseractLib/linux_x64:$LD_LIBRARY_PATH
+
 # Process an image
 dotnet run --project ConsoleApp1 sample.png
+
+# Or in one command:
+LD_LIBRARY_PATH=./ConsoleApp1/bin/Debug/net8.0/tesseractLib/linux_x64:$LD_LIBRARY_PATH dotnet run --project ConsoleApp1 sample.png
+```
+
+### General Usage
+
+```bash
+# Process an image
+dotnet run --project ConsoleApp1 <path-to-image>
 
 # Or after building:
 cd ConsoleApp1/bin/Debug/net8.0
